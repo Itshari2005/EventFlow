@@ -1,0 +1,213 @@
+body {
+    margin : auto;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: white;
+    color: #333;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.header .nav-buttons button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.header .nav-buttons .sign-in {
+    background: none;
+    color: black;
+}
+
+.header .nav-buttons .sign-in:hover {
+    background-color: rgb(130, 199, 26);
+}
+
+.header .nav-buttons .join-now {
+    background-color: blue;
+    color: white;
+}
+
+/* Intro Body */
+.intro-body {
+    display: flex;
+    background-color:  #e4e6eb;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 2rem;
+}
+
+.intro-text {
+    max-width: 50%;
+}
+
+.intro-text h1 {
+    font-size: 2.5rem;
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    color: #555;
+}
+
+.intro-image img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.intro-body-2 {
+    background-color: white;
+    text-align: center;
+    padding: 2rem 2rem;
+}
+
+.intro-body-2 h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.intro-body-2 p {
+    color: #666;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.intro-body-2-cards {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.intro-body-2-card {
+    background-color: #f3f1f1;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.intro-body-2-card:hover {
+    transform: translateY(-10px);
+}
+
+.intro-body-2-card h2 {
+    margin-bottom: 0.5rem;
+}
+
+.intro-body-2-card p {
+    color: #444;
+    font-size: 1rem;
+}
+
+.intro-body-3 {
+    background-color: #e4e6eb;
+    text-align: center;
+    padding: 2rem 2rem;
+}
+
+.intro-body-3 h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.intro-body-3 p {
+    color: #666;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.intro-body-3 button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.intro-3-log-in {
+    background: none;
+    color: black;
+}
+
+.intro-3-log-in:hover {
+    background-color: rgb(130, 199, 26);
+}
+
+.intro-3-sign-up {
+    background-color: blue;
+    color: white;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: white;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+}
+
+.footer-left {
+    max-width: 350px;
+}
+
+.footer-left h2 {
+    margin-bottom: 10px;
+}
+
+.footer-left p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.footer-left .copyright {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.footer-right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 8px;
+}
+
+.footer-column a {
+    text-decoration: none;
+    color: #555;
+    font-size: 16px;
+}
+
+.footer-column a:hover {
+    text-decoration: underline;
+}

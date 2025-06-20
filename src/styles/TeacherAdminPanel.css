@@ -1,0 +1,45 @@
+/* Your Panel*/
+.your-panel {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.div1st-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div1st-button {
+  color: white;
+  font-size: 16px;              
+  background-color: #3b82f6;
+  border: none;                 
+  border-radius: 8px;
+  padding: 8px 16px;          
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.div1st-button:hover {
+  background-color: #2563eb;  
+}
+
+.events-container {
+  margin: 30px auto;
+  padding: 20px;
+  max-width: 1000px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.events-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+}
+
+

@@ -1,0 +1,287 @@
+/* General Styles */
+.profile-page {
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.logo {
+    cursor: pointer;
+}
+
+/* Header and Tabs */
+/* Header Container */
+/* Unified Header Container */
+.profile-header {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo on the left */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+/* Tabs in center */
+.profile-tabs {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding-bottom: 4px;
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+.nav-link:hover::after {
+  background-color: #007bff;
+}
+
+.active-link {
+  color: #007bff;
+}
+
+.active-link::after {
+  background-color: #007bff;
+}
+
+/* Right icons */
+.icons .icon {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  color: #333;
+}
+
+
+/* User Info Container */
+.profile-info-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.user-basic-info {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-role {
+  color: #888;
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+.user-contact {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.user-contact svg {
+  margin-right: 8px;
+  color: #3b82f6;
+}
+
+.user-about h3 {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+.user-about p {
+  color: #555;
+  margin: 0.5rem 0 1rem;
+}
+
+.edit-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #3b82f6;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+  background-color: #2563eb;
+}
+
+/* Activity Stats */
+.activity-stats-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.activity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 30%;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.activity-item span {
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+/* Settings */
+.settings-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  margin-bottom: 3rem;
+}
+
+.settings-container h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.settings-subtext {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.settings-subsection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #eee;
+}
+
+.setting-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #444;
+  font-weight: 500;
+}
+
+/* Toggle Button */
+.toggle-switch {
+  position: relative;
+  width: 50px;
+  height: 24px;
+  display: inline-block;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 24px;
+  transition: 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+/* When toggled */
+.toggle-switch input:checked + .slider {
+  background-color: #3b82f6;
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+/* Logout */
+.logout-container {
+  margin-top: 1.5rem;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #ef4444;
+  color: white;
+}
+
+.logout-icon {
+  font-size: 1.2rem;
+}
+

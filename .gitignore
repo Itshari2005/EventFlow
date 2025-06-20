@@ -1,0 +1,33 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node
+node_modules/
+
+# React/Vite (Client)
+dist/
+dist-ssr/
+*.local
+
+# Environment Variables
+.env*
+!*.example
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+
+# OS & Other
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
