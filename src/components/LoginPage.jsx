@@ -57,9 +57,6 @@ const LoginPage = () => {
     <div className="login-container">
       <h2 className="login-heading">Campus Events</h2>
       <p className="login-subtext">Sign in to explore, register, and manage your campus events</p>
-      <button type='button' className='dummy-button' onClick={() => navigate('/student-profile')}>Student Profile</button>
-      <button type='button' className='dummy-button' onClick={() => navigate('/teacher-profile')}>Teacher Profile</button>
-      <button type='button' className='dummy-button' onClick={() => navigate('/student-dashboard')}>Stu Dashboard</button>
 
       <form className="login-form" onSubmit={handleLogin}>
         <div className="form-group">
