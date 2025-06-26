@@ -11,51 +11,56 @@
 }
 
 /* Header and Tabs */
-.profile-header-container {
-  background-color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-  margin-bottom: 2rem;
-}
 
-.profile-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
+/* Logo */
 .logo {
-  font-size: 1.8rem;
   font-weight: bold;
+  font-size: 1.5rem;
   color: #3b82f6;
+  cursor: pointer;
 }
 
-.icons .icon {
+/* Navigation tabs (centered links) */
+.profile-tabs {
+  display: flex;
+  gap: 2rem;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.profile-tabs a {
+  text-decoration: none;
+  color: black;
+}
+
+.profile-tabs a:hover {
+  color: #2563eb;
+}
+
+.active-link {
+  color: #2563eb;
+  font-weight: bold;
+}
+
+/* Right-side icons (notification, profile) */
+.nav-buttons .icon {
   font-size: 1.5rem;
   margin-left: 1rem;
   cursor: pointer;
   color: #555;
 }
 
-.profile-tabs {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-  gap: 2rem;
-  font-weight: 500;
-  font-size: 1rem;
-  color: #666;
-}
-
-.profile-tabs a {
-    text-decoration: none;
-    color: black;
-}
-
-.profile-tabs a:hover {
-    color: blue;
-}
 
 /* User Info Container */
 .profile-info-container {

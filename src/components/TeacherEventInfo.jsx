@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/TeacherEventInfo.css";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, NavLink } from "react-router-dom";
 import {
   FaBell,
   FaUserCircle,
@@ -13,47 +13,59 @@ import {
 const TeacherEventInfo = () => {
   const navigate = useNavigate();
   const [visibleEventId, setVisibleEventId] = useState(null);
-
-  // Dummy event data
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-  axios.get("http://localhost:5000/api/events")
-    .then((res) => {
-      setEvents(res.data);
-    })
-    .catch((err) => {
-      console.error("Error fetching events:", err);
-    });
-}, []);
-
+    axios
+      .get("http://localhost:5000/api/events")
+      .then((res) => {
+        setEvents(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching events:", err);
+      });
+  }, []);
 
   const toggleVisibility = (id) => {
     setVisibleEventId((prev) => (prev === id ? null : id));
   };
 
   return (
-    <div className="event-info-page">
-      <div className="profile-header-container">
-        <header className="profile-header">
-          <div className="logo" onClick={() => navigate("/")}>EventFlow</div>
-          <nav className="profile-tabs">
-            <span><Link to="/teacher-event-info">Events Info</Link></span>
-            <span><Link to="/teacher-admin-panel">Your Panel</Link></span>
-          </nav>
-          <div className="icons">
-            <FaBell className="icon" />
-            <FaUserCircle className="icon" onClick={() => navigate('/teacher-profile')} />
-          </div>
-        </header>
-      </div>
+    <div>
+      {/* Header */}
+      <header className="header">
+        <div className="logo" onClick={() => navigate("/")}>EventFlow</div>
+        <nav className="profile-tabs">
+          <NavLink
+            to="/teacher-event-info"
+            className={({ isActive }) =>
+              isActive ? "nav-link active-link" : "nav-link"
+            }
+          >
+            Event Info
+          </NavLink>
+          <NavLink
+            to="/teacher-admin-panel"
+            className={({ isActive }) =>
+              isActive ? "nav-link active-link" : "nav-link"
+            }
+          >
+            Your Panel
+          </NavLink>
+        </nav>
+        <div className="nav-buttons">
+          <FaBell className="icon" />
+          <FaUserCircle className="icon" onClick={() => navigate("/teacher-profile")} />
+        </div>
+      </header>
 
-      <div className="events-section">
+      {/* Events Section */}
+      <div className="event-info-page">
         <h2>All Events</h2>
         {events.length === 0 ? (
           <p>No events found.</p>
         ) : (
-          events.map(event => (
+          events.map((event) => (
             <div className="event-card" key={event.id}>
               <h3>{event.title}</h3>
               <div className="icon-text"><FaCalendarAlt /> {event.date.slice(0, 10)}</div>

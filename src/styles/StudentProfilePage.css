@@ -1,84 +1,50 @@
-/* General Styles */
-.profile-page {
-  padding: 2rem;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-.logo {
-    cursor: pointer;
-}
-
-/* Header and Tabs */
-/* Header Container */
-/* Unified Header Container */
-.profile-header {
-  background-color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 2rem;
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin-bottom: 1rem;
 }
 
-/* Logo on the left */
+/* Logo */
 .logo {
-  font-size: 1.8rem;
   font-weight: bold;
-  color: #2563eb;
+  font-size: 1.5rem;
+  color: #3b82f6;
   cursor: pointer;
 }
 
-/* Tabs in center */
+/* Navigation tabs (centered links) */
 .profile-tabs {
   display: flex;
   gap: 2rem;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: #333;
   font-weight: 500;
-  padding-bottom: 4px;
-  position: relative;
+  font-size: 1rem;
 }
 
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: transparent;
-  transition: background-color 0.3s ease;
+.profile-tabs a {
+  text-decoration: none;
+  color: black;
 }
 
-.nav-link:hover {
-  color: #007bff;
-}
-
-.nav-link:hover::after {
-  background-color: #007bff;
+.profile-tabs a:hover {
+  color: #2563eb;
 }
 
 .active-link {
-  color: #007bff;
+  color: #2563eb;
+  font-weight: bold;
 }
 
-.active-link::after {
-  background-color: #007bff;
-}
-
-/* Right icons */
-.icons .icon {
+/* Right-side icons (notification, profile) */
+.nav-buttons .icon {
   font-size: 1.5rem;
   margin-left: 1rem;
   cursor: pointer;
-  color: #333;
+  color: #555;
 }
 
 

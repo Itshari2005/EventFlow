@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import '../styles/Header.css';
 
 const LoginPage = () => {
   const [emailOrId, setEmailOrId] = useState('');
@@ -54,80 +55,85 @@ const LoginPage = () => {
 
 
   return (
-    <div className="login-container">
-      <h2 className="login-heading">Campus Events</h2>
-      <p className="login-subtext">Sign in to explore, register, and manage your campus events</p>
+    <div>
+      <header className='header'>
+        <div className='logo' onClick={()=> navigate('/')}>EventFlow</div>
+      </header>
+      <div className="login-container">
+        <h2 className="login-heading">Campus Events</h2>
+        <p className="login-subtext">Sign in to explore, register, and manage your campus events</p>
 
-      <form className="login-form" onSubmit={handleLogin}>
-        <div className="form-group">
-          <label htmlFor="text">Email / Roll No / ID</label>
-          <input
-            type="text"
-            id="login-id"
-            name="login-id"
-            placeholder="Enter your email or id or roll no"
-            value={emailOrId}
-            onChange={(e) => setEmailOrId(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group password-group">
-          <label htmlFor="password">Password</label>
-          <a href="#" className="forgot-password">Forgot Password?</a>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-roles">
-          <label htmlFor="role">Role</label>
-          <div className="radio-options">
+        <form className="login-form" onSubmit={handleLogin}>
+          <div className="form-group">
+            <label htmlFor="text">Email / Roll No / ID</label>
             <input
-              type="radio"
-              id="student"
-              name="role"
-              value="student"
-              checked={role === 'student'}
-              onChange={(e) => setRole(e.target.value)}
+              type="text"
+              id="login-id"
+              name="login-id"
+              placeholder="Enter your email or id or roll no"
+              value={emailOrId}
+              onChange={(e) => setEmailOrId(e.target.value)}
+              required
             />
-            <label htmlFor="student">Student</label>
+          </div>
+
+          <div className="form-group password-group">
+            <label htmlFor="password">Password</label>
+            <a href="#" className="forgot-password">Forgot Password?</a>
             <input
-              type="radio"
-              id="teacher"
-              name="role"
-              value="teacher"
-              checked={role === 'teacher'}
-              onChange={(e) => setRole(e.target.value)}
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
-            <label htmlFor="teacher">Teacher</label>
           </div>
-        </div>
 
-        <div className="remember-me">
-          <input type="checkbox" id="remember" />
-          <label htmlFor="remember">Remember me</label>
-        </div>
-
-        <button className="sign-in-button">Sign In</button>
-
-        <hr />
-
-        <div className="social-sign-in">
-          <h5>OR SIGN IN WITH</h5>
-          <div className="social-buttons">
-            <button type='button'>Google</button>
-            <button type='button'>Facebook</button>
+          <div className="form-roles">
+            <label htmlFor="role">Role</label>
+            <div className="radio-options">
+              <input
+                type="radio"
+                id="student"
+                name="role"
+                value="student"
+                checked={role === 'student'}
+                onChange={(e) => setRole(e.target.value)}
+              />
+              <label htmlFor="student">Student</label>
+              <input
+                type="radio"
+                id="teacher"
+                name="role"
+                value="teacher"
+                checked={role === 'teacher'}
+                onChange={(e) => setRole(e.target.value)}
+              />
+              <label htmlFor="teacher">Teacher</label>
+            </div>
           </div>
-          <Link to="/signup">Don’t have an account? Sign Up</Link>
-        </div>
-      </form>
+
+          <div className="remember-me">
+            <input type="checkbox" id="remember" />
+            <label htmlFor="remember">Remember me</label>
+          </div>
+
+          <button className="sign-in-button">Sign In</button>
+
+          <hr />
+
+          <div className="social-sign-in">
+            <h5>OR SIGN IN WITH</h5>
+            <div className="social-buttons">
+              <button type='button'>Google</button>
+              <button type='button'>Facebook</button>
+            </div>
+            <Link to="/signup">Don’t have an account? Sign Up</Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

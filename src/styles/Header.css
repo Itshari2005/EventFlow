@@ -1,0 +1,37 @@
+/* Header Styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.header .nav-buttons button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.header .nav-buttons .sign-in {
+    background: none;
+    color: black;
+}
+
+.header .nav-buttons .sign-in:hover {
+    background-color: rgb(130, 199, 26);
+}
+
+.header .nav-buttons .join-now {
+    background-color: blue;
+    color: white;
+}
