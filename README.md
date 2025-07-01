@@ -106,12 +106,9 @@ http://localhost:5173
 
 ---
 
-## 🌐 Deployment (Optional)
+## 🌐 Deployment 
 
-You can deploy this frontend-only version using:
 - **Vercel**
-- **Netlify**
-- **GitHub Pages (with Vite adapter)**
 
 ---
 
