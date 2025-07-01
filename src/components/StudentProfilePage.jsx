@@ -22,34 +22,35 @@ const StudentProfilePage = () => {
     const fullName = localStorage.getItem("fullName") || "Student";
     const email = localStorage.getItem("email") || "student@email.com";
     const departmentRaw = localStorage.getItem("department") || "Dept";
-    const department = departmentRaw.slice(0, 10); // max 10 chars
+    const department = departmentRaw.slice(0, 10);
     const year = localStorage.getItem("year") || "1st Year";
 
     setUser({
       full_name: fullName,
-      email: email,
-      department: department,
-      year: year,
+      email,
+      department,
+      year,
     });
   }, []);
 
   return (
     <div>
       <header className="header">
-  <div className="logo" onClick={() => navigate("/")}>EventFlow</div>
-  <nav className="profile-tabs">
-    <NavLink to="/student-dashboard" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
-      Dashboard
-    </NavLink>
-    <NavLink to="/student-events" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
-      Events
-    </NavLink>
-  </nav>
-  <div className="nav-buttons">
-    <FaBell className="icon" />
-    <FaUserCircle className="icon" onClick={() => navigate("/student-profile")} />
-  </div>
-</header>
+        <div className="logo" onClick={() => navigate("/")}>EventFlow</div>
+        <nav className="profile-tabs">
+          <NavLink to="/student-dashboard" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
+            Dashboard
+          </NavLink>
+          <NavLink to="/student-events" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
+            Events
+          </NavLink>
+        </nav>
+        <div className="nav-buttons">
+          <FaBell className="icon" />
+          <FaUserCircle className="icon" onClick={() => navigate("/student-profile")} />
+        </div>
+      </header>
+
       <div className="profile-page">
         <div className="profile-info-container">
           <div className="user-basic-info">
@@ -90,7 +91,7 @@ const StudentProfilePage = () => {
               Dark Mode
             </div>
             <label className="toggle-switch">
-              <input type="checkbox" checked={darkMode} onChange={()=> setDarkMode(!darkMode)} />
+              <input type="checkbox" checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
               <span className="slider"></span>
             </label>
           </div>
@@ -98,11 +99,7 @@ const StudentProfilePage = () => {
           <div className="settings-subsection">
             <div className="setting-label">Email Notifications</div>
             <label className="toggle-switch">
-              <input
-                type="checkbox"
-                checked={emailNotifs}
-                onChange={() => setEmailNotifs(!emailNotifs)}
-              />
+              <input type="checkbox" checked={emailNotifs} onChange={() => setEmailNotifs(!emailNotifs)} />
               <span className="slider"></span>
             </label>
           </div>
@@ -110,17 +107,16 @@ const StudentProfilePage = () => {
           <div className="settings-subsection">
             <div className="setting-label">Push Notifications</div>
             <label className="toggle-switch">
-              <input
-                type="checkbox"
-                checked={pushNotifs}
-                onChange={() => setPushNotifs(!pushNotifs)}
-              />
+              <input type="checkbox" checked={pushNotifs} onChange={() => setPushNotifs(!pushNotifs)} />
               <span className="slider"></span>
             </label>
           </div>
 
           <div className="logout-container">
-            <button className="logout-btn" onClick={() => navigate("/")}>
+            <button className="logout-btn" onClick={() => {
+              localStorage.clear(); // clear data if needed
+              navigate("/");
+            }}>
               <FaSignOutAlt className="logout-icon" /> Logout
             </button>
           </div>

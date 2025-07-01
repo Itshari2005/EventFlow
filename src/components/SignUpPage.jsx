@@ -16,47 +16,40 @@ const SignUpPage = () => {
     roll_no_or_id: ""
   });
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  // Check if passwords match
-  if (formData.password !== formData.confirmPassword) {
-    alert("Passwords do not match");
-    return;
-  }
-
-  // Prepare request body
-  const body = {
-    fullName: formData.full_name,
-    email: formData.email,
-    password: formData.password,
-    role: role,
-    rollNumber: role === "student" ? formData.roll_no_or_id : undefined,
-    department: role === "student" ? department : undefined,
-    year: role === "student" ? year : undefined,
-    teacher_id: role === "teacher" ? formData.roll_no_or_id : undefined,
-  };
-
-  try {
-    const res = await fetch("http://localhost:5000/api/auth/signup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      alert("Signup successful");
-      // optionally redirect to login
-    } else {
-      alert(data.message || "Signup failed");
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
     }
-  } catch (err) {
-    console.error("❌ Signup error:", err);
-    alert("Server error");
-  }
-};
+
+    const users = JSON.parse(localStorage.getItem("eventflow_users")) || [];
+
+    // Check for duplicate email
+    const existingUser = users.find(u => u.email === formData.email);
+    if (existingUser) {
+      alert("Email already registered");
+      return;
+    }
+
+    const newUser = {
+      fullName: formData.full_name,
+      email: formData.email,
+      password: formData.password,
+      role: role,
+      rollNumber: role === "student" ? formData.roll_no_or_id : undefined,
+      department: role === "student" ? department : undefined,
+      year: role === "student" ? year : undefined,
+      teacher_id: role === "teacher" ? formData.roll_no_or_id : undefined,
+    };
+
+    users.push(newUser);
+    localStorage.setItem("eventflow_users", JSON.stringify(users));
+
+    alert("Signup successful!");
+    navigate("/login");
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -65,7 +58,7 @@ const SignUpPage = () => {
   return (
     <div>
       <header className='header'>
-        <div className='logo' onClick={()=> navigate('/')}>EventFlow</div>
+        <div className='logo' onClick={() => navigate('/')}>EventFlow</div>
       </header>
       <div className="signup-container">
         <h2 className="create-account">Create an Account</h2>
@@ -212,4 +205,3 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
-

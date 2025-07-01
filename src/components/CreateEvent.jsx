@@ -32,49 +32,36 @@ const CreateEvent = ({ onClose, onUpdate, editData }) => {
     }
   }, [editData]);
 
-  const handleCreate = async (eventData) => {
-    try {
-      const response = await fetch("http://localhost:5000/api/events", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(eventData),
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        alert("Event created successfully!");
-      } else {
-        alert(result.message || "Failed to create event.");
-      }
-    } catch (error) {
-      console.error("Create error:", error);
-      alert("Something went wrong while creating.");
-    }
+  const saveToLocalStorage = (events) => {
+    localStorage.setItem("events", JSON.stringify(events));
   };
 
-  const handleUpdate = async (eventData) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/events/${eventData.id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(eventData),
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        alert("Event updated successfully!");
-        onUpdate(eventData); // notify parent
-      } else {
-        console.log("Update failed response:", result);
-        alert(result.message || "Failed to update event.");
-      }
-    } catch (error) {
-      console.error("Update error:", error);
-      alert("Something went wrong while updating.");
-    }
+  const getFromLocalStorage = () => {
+    return JSON.parse(localStorage.getItem("events")) || [];
   };
 
-  const handleSubmit = async () => {
+  const handleCreate = (eventData) => {
+    const allEvents = getFromLocalStorage();
+    const newEvent = {
+      ...eventData,
+      id: Date.now(), // simple unique ID
+    };
+    const updatedEvents = [...allEvents, newEvent];
+    saveToLocalStorage(updatedEvents);
+    alert("Event created successfully!");
+  };
+
+  const handleUpdate = (eventData) => {
+    let allEvents = getFromLocalStorage();
+    allEvents = allEvents.map((event) =>
+      event.id === eventData.id ? { ...eventData } : event
+    );
+    saveToLocalStorage(allEvents);
+    alert("Event updated successfully!");
+    onUpdate(eventData); // notify parent
+  };
+
+  const handleSubmit = () => {
     const eventData = {
       title,
       description,
@@ -86,19 +73,17 @@ const CreateEvent = ({ onClose, onUpdate, editData }) => {
     };
 
     if (editData) {
-      // ✅ Only update if editData exists
-      await handleUpdate({ ...eventData, id: editData.id });
+      handleUpdate({ ...eventData, id: editData.id });
     } else {
-      // ✅ Only create if it's a new event
       const teacher_id = localStorage.getItem("teacher_id");
       if (!teacher_id) {
         alert("Teacher ID not found in localStorage.");
         return;
       }
-      await handleCreate({ ...eventData, teacher_id });
+      handleCreate({ ...eventData, teacher_id });
     }
 
-    onClose(); // ✅ Close modal only once
+    onClose();
   };
 
   return (

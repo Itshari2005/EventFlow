@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../styles/TeacherEventInfo.css";
-import axios from "axios";
-import { useNavigate, Link, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import {
   FaBell,
   FaUserCircle,
@@ -16,14 +15,11 @@ const TeacherEventInfo = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/events")
-      .then((res) => {
-        setEvents(res.data);
-      })
-      .catch((err) => {
-        console.error("Error fetching events:", err);
-      });
+    // 🟢 Get events created by this teacher from localStorage
+    const teacherId = localStorage.getItem("teacher_id");
+    const allEvents = JSON.parse(localStorage.getItem("events")) || [];
+    const teacherEvents = allEvents.filter(event => event.teacher_id === teacherId);
+    setEvents(teacherEvents);
   }, []);
 
   const toggleVisibility = (id) => {
@@ -68,7 +64,7 @@ const TeacherEventInfo = () => {
           events.map((event) => (
             <div className="event-card" key={event.id}>
               <h3>{event.title}</h3>
-              <div className="icon-text"><FaCalendarAlt /> {event.date.slice(0, 10)}</div>
+              <div className="icon-text"><FaCalendarAlt /> {event.date}</div>
               <p><FaMapMarkerAlt /> {event.location}</p>
               {event.time && (
                 <div className="icon-text">

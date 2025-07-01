@@ -16,41 +16,37 @@ const TeacherProfilePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const teacherData = {
-      full_name: localStorage.getItem("fullName") || "Teacher",
-      email: localStorage.getItem("email") || "email@example.com",
-    };
-    setUser(teacherData);
+    const stored = localStorage.getItem("loggedInTeacher");
+    if (stored) {
+      setUser(JSON.parse(stored));
+    } else {
+      setUser({
+        full_name: "Teacher",
+        email: "email@example.com"
+      });
+    }
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInTeacher");
+    navigate("/");
+  };
 
   return (
     <div>
       <header className="header">
         <div className="logo" onClick={() => navigate("/")}>EventFlow</div>
         <nav className="profile-tabs">
-          <NavLink
-            to="/teacher-event-info"
-            className={({ isActive }) =>
-              isActive ? "nav-link active-link" : "nav-link"
-            }
-          >
+          <NavLink to="/teacher-event-info" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
             Event Info
           </NavLink>
-          <NavLink
-            to="/teacher-admin-panel"
-            className={({ isActive }) =>
-              isActive ? "nav-link active-link" : "nav-link"
-            }
-          >
+          <NavLink to="/teacher-admin-panel" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
             Your Panel
           </NavLink>
         </nav>
         <div className="nav-buttons">
           <FaBell className="icon" />
-          <FaUserCircle
-            className="icon"
-            onClick={() => navigate("/teacher-profile")}
-          />
+          <FaUserCircle className="icon" onClick={() => navigate("/teacher-profile")} />
         </div>
       </header>
 
@@ -107,7 +103,7 @@ const TeacherProfilePage = () => {
           </div>
 
           <div className="logout-container">
-            <button className="logout-btn" onClick={() => navigate("/")}>
+            <button className="logout-btn" onClick={handleLogout}>
               <FaSignOutAlt className="logout-icon" /> Logout
             </button>
           </div>

@@ -8,9 +8,8 @@ import {
 } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
-import { Link, useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import CreateEvent from "./CreateEvent";
-import axios from "axios";
 import "../styles/TeacherAdminPanel.css";
 
 const TeacherAdminPanel = () => {
@@ -19,12 +18,18 @@ const TeacherAdminPanel = () => {
   const [editIndex, setEditIndex] = useState(null);
   const [events, setEvents] = useState([]);
 
+  // Load events from localStorage
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/events")
-      .then((res) => setEvents(res.data))
-      .catch((err) => console.error("Error fetching events:", err));
+    const storedEvents = localStorage.getItem("eventflow_events");
+    if (storedEvents) {
+      setEvents(JSON.parse(storedEvents));
+    }
   }, []);
+
+  const saveEventsToStorage = (updatedEvents) => {
+    localStorage.setItem("eventflow_events", JSON.stringify(updatedEvents));
+    setEvents(updatedEvents);
+  };
 
   const capitalize = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
@@ -33,82 +38,41 @@ const TeacherAdminPanel = () => {
     setCreateEvent(true);
   };
 
-  const handleDelete = async (index) => {
+  const handleDelete = (index) => {
     const eventToDelete = events[index];
-    const confirmDelete = window.confirm(
-      `Delete event "${eventToDelete.title}"?`
-    );
+    const confirmDelete = window.confirm(`Delete event "${eventToDelete.title}"?`);
     if (!confirmDelete) return;
 
-    try {
-      await axios.delete(
-        `http://localhost:5000/api/events/${eventToDelete.id}`
-      );
-      const updated = [...events];
-      updated.splice(index, 1);
-      setEvents(updated);
-    } catch (err) {
-      console.error("Error deleting event:", err);
-      alert("Failed to delete event");
-    }
+    const updated = [...events];
+    updated.splice(index, 1);
+    saveEventsToStorage(updated);
   };
 
-  const handleCreate = async (eventData) => {
-    try {
-      if (editIndex !== null) {
-        const eventId = events[editIndex].id;
-        await axios.put(
-          `http://localhost:5000/api/events/${eventId}`,
-          eventData
-        );
-        const updated = [...events];
-        updated[editIndex] = { ...eventData, id: eventId };
-        setEvents(updated);
-      } else {
-        const res = await axios.post(
-          "http://localhost:5000/api/events",
-          eventData
-        );
-        setEvents([...events, { ...eventData, id: res.data.eventId }]);
-      }
-      setCreateEvent(false);
-      setEditIndex(null);
-    } catch (err) {
-      console.error("Error saving event:", err);
-      alert("Failed to save event");
+  const handleCreate = (eventData) => {
+    const updatedEvents = [...events];
+
+    if (editIndex !== null) {
+      updatedEvents[editIndex] = { ...eventData, id: updatedEvents[editIndex].id || Date.now() };
+    } else {
+      updatedEvents.push({ ...eventData, id: Date.now() });
     }
+
+    saveEventsToStorage(updatedEvents);
+    setCreateEvent(false);
+    setEditIndex(null);
   };
 
   return (
     <div>
       <header className="header">
-        <div className="logo" onClick={() => navigate("/")}>
-          EventFlow
-        </div>
+        <div className="logo" onClick={() => navigate("/")}>EventFlow</div>
         <nav className="profile-tabs">
-          <NavLink
-            to="/teacher-event-info"
-            className={({ isActive }) =>
-              isActive ? "nav-link active-link" : "nav-link"
-            }
-          >
-            Event Info
-          </NavLink>
-          <NavLink
-            to="/teacher-admin-panel"
-            className={({ isActive }) =>
-              isActive ? "nav-link active-link" : "nav-link"
-            }
-          >
-            Your Panel
-          </NavLink>
+          <NavLink to="/teacher-event-info" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Event Info</NavLink>
+          <NavLink to="/teacher-admin-panel" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>Your Panel</NavLink>
         </nav>
         <div className="nav-buttons">
           <FaBell className="icon" />
-          <FaUserCircle
-            className="icon"
-            onClick={() => navigate("/teacher-profile")}
-          />
+          <FaUserCircle className="icon" onClick={() => navigate("/teacher-profile")} />
         </div>
       </header>
 
@@ -149,46 +113,24 @@ const TeacherAdminPanel = () => {
                 <tr key={index}>
                   <td>
                     <div className="event-title">{event.title}</div>
-                    <span
-                      className={`tag ${event.category
-                        .toLowerCase()
-                        .replace("-", "")}`}
-                    >
+                    <span className={`tag ${event.category.toLowerCase().replace("-", "")}`}>
                       {capitalize(event.category)}
                     </span>
                   </td>
                   <td>
-                    <div className="icon-text">
-                      <FaCalendarAlt /> {event.date.slice(0, 10)}
-                    </div>
-                    <div className="icon-text">
-                      <FaClock /> {event.time}
-                    </div>
+                    <div className="icon-text"><FaCalendarAlt /> {event.date?.slice(0, 10)}</div>
+                    <div className="icon-text"><FaClock /> {event.time}</div>
                   </td>
                   <td>
-                    <div className="icon-text">
-                      <FaMapMarkerAlt /> {event.location}
-                    </div>
+                    <div className="icon-text"><FaMapMarkerAlt /> {event.location}</div>
                   </td>
                   <td>
                     {event.available_seats}
-                    <div className="icon-text small">
-                      <FaUser /> 0 registered
-                    </div>
+                    <div className="icon-text small"><FaUser /> 0 registered</div>
                   </td>
                   <td>
-                    <button
-                      className="action-btn"
-                      onClick={() => handleEdit(index)}
-                    >
-                      <FiEdit2 />
-                    </button>
-                    <button
-                      className="action-btn"
-                      onClick={() => handleDelete(index)}
-                    >
-                      <FiTrash2 />
-                    </button>
+                    <button className="action-btn" onClick={() => handleEdit(index)}><FiEdit2 /></button>
+                    <button className="action-btn" onClick={() => handleDelete(index)}><FiTrash2 /></button>
                   </td>
                 </tr>
               ))}

@@ -8,13 +8,20 @@ import {
 import "../styles/StudentEventPage.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 const StudentEventPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("all");
   const [events, setEvents] = useState([]);
   const [registeredEvents, setRegisteredEvents] = useState([]);
+
+  // ✅ Load all events from localStorage
+  useEffect(() => {
+    const storedEvents = localStorage.getItem("eventflow_events");
+    if (storedEvents) {
+      setEvents(JSON.parse(storedEvents));
+    }
+  }, []);
 
   // ✅ Load registered events from localStorage
   useEffect(() => {
@@ -24,15 +31,7 @@ const StudentEventPage = () => {
     }
   }, [activeTab]); // Refresh when tab changes
 
-  // ✅ Fetch all events
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/events")
-      .then((res) => setEvents(res.data))
-      .catch((err) => console.error("Error fetching events:", err));
-  }, []);
-
-  // ✅ Register an event (save to localStorage)
+  // ✅ Register an event
   const handleRegister = (event) => {
     const updated = [...registeredEvents, event];
     localStorage.setItem("registeredEvents", JSON.stringify(updated));
@@ -43,20 +42,21 @@ const StudentEventPage = () => {
   return (
     <div>
       <header className="header">
-  <div className="logo" onClick={() => navigate("/")}>EventFlow</div>
-  <nav className="profile-tabs">
-    <NavLink to="/student-dashboard" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
-      Dashboard
-    </NavLink>
-    <NavLink to="/student-events" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
-      Events
-    </NavLink>
-  </nav>
-  <div className="nav-buttons">
-    <FaBell className="icon" />
-    <FaUserCircle className="icon" onClick={() => navigate("/student-profile")} />
-  </div>
-</header>
+        <div className="logo" onClick={() => navigate("/")}>EventFlow</div>
+        <nav className="profile-tabs">
+          <NavLink to="/student-dashboard" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
+            Dashboard
+          </NavLink>
+          <NavLink to="/student-events" className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}>
+            Events
+          </NavLink>
+        </nav>
+        <div className="nav-buttons">
+          <FaBell className="icon" />
+          <FaUserCircle className="icon" onClick={() => navigate("/student-profile")} />
+        </div>
+      </header>
+
       <div className="your-panel">
         <div className="panel-details">
           <div className="div1st-panel">

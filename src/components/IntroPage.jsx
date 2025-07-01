@@ -1,22 +1,22 @@
-import Img1 from '../assets/home_image_1.png'; // Add your image to assets
+import Img1 from '../assets/home_image_1.png';
 import { useNavigate } from 'react-router-dom';
 
 const IntroPage = () => {
-
   const navigate = useNavigate();
 
   return (
     <div>
-        {/* Header Section */}
-        <div className='header-div'>
-            <header className='header'>
-                <div className='logo'>EventFlow</div>
-                <div className='nav-buttons'>
-                    <button className='sign-in' onClick={()=> navigate('/login')}>Sign In</button>
-                    <button className='join-now' onClick={()=> navigate('/signup')}>Join Now</button>
-                </div>
-            </header>
-       </div>
+      {/* Header Section */}
+      <div className="header-div">
+        <header className="header">
+          <div className="logo">EventFlow</div>
+          <div className="nav-buttons">
+            <button className="sign-in" onClick={() => navigate('/login')}>Sign In</button>
+            <button className="join-now" onClick={() => navigate('/signup')}>Join Now</button>
+          </div>
+        </header>
+      </div>
+
       {/* Intro Section */}
       <div className="intro-body">
         <div className="intro-text">
@@ -24,8 +24,8 @@ const IntroPage = () => {
             Welcome to <span style={{ color: 'blue' }}>EventFlow</span>
           </h1>
           <p>
-            Plan, organize, discover, register and participate in campus events. All in one place, easy to use and
-            designed for college communities.
+            Plan, organize, discover, register, and participate in campus events.
+            All in one place, easy to use, and designed for college communities.
           </p>
         </div>
         <div className="intro-image">
@@ -37,13 +37,13 @@ const IntroPage = () => {
       <div className="intro-body-2">
         <h2>Everything you need</h2>
         <p className="intro-body-2-p">
-          Our comprehensive event management system is designed to make campus events simple, organised and accessible
-          for everyone.
+          Our comprehensive event management system is designed to make campus events simple,
+          organized, and accessible for everyone.
         </p>
         <div className="intro-body-2-cards">
           <div className="intro-body-2-card">
             <h3>Event Discovery</h3>
-            <p>Browse and discover technical, non-technical and other events happening on campus.</p>
+            <p>Browse and discover technical, non-technical, and other events happening on campus.</p>
           </div>
           <div className="intro-body-2-card">
             <h3>Easy Registration</h3>
@@ -60,10 +60,10 @@ const IntroPage = () => {
       <div className="intro-body-3">
         <div className="intro-body-text">
           <h3>Ready to Get Started?</h3>
-          <p>Join our platform today and revolutionize how you handle campus events</p>
+          <p>Join our platform today and revolutionize how you handle campus events.</p>
           <div className="intro-3-buttons">
-            <button className="intro-3-sign-up" onClick={()=> navigate('/signup')}>Sign Up Now</button>
-            <button className="intro-3-log-in" onClick={()=> navigate('/login')}>Log In</button>
+            <button className="intro-3-sign-up" onClick={() => navigate('/signup')}>Sign Up Now</button>
+            <button className="intro-3-log-in" onClick={() => navigate('/login')}>Log In</button>
           </div>
         </div>
       </div>
@@ -84,8 +84,8 @@ const IntroPage = () => {
           <div className="footer-column">
             <h4>Platform</h4>
             <ul>
-              <li><a href="/login">Login</a></li>
-              <li><a href="/signup">Sign Up</a></li>
+              <li><button className="footer-link" onClick={() => navigate('/login')}>Login</button></li>
+              <li><button className="footer-link" onClick={() => navigate('/signup')}>Sign Up</button></li>
             </ul>
           </div>
           <div className="footer-column">
