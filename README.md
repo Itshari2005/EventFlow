@@ -1,6 +1,6 @@
-# 🎉 EventFlow – Campus Event Management System
+# 🎉 EventFlow – Campus Event Management System (Frontend Only)
 
-EventFlow is a full-stack web application that simplifies event organization and participation on a college campus. Teachers can create and manage events, while students can register and view their registered events.
+EventFlow is a **frontend-only React application** that simplifies event organization and participation on a college campus. It supports **role-based access** for students and teachers. Teachers can create and manage events, while students can register for events and view their participation – all powered by **localStorage** (no backend required).
 
 ---
 
@@ -10,104 +10,123 @@ EventFlow is a full-stack web application that simplifies event organization and
 - React.js (Vite)
 - HTML5, CSS3
 - React Icons
-- Axios
-- Local Storage (for session handling)
-
-### 🛠️ Backend
-- Node.js
-- Express.js
-- MySQL (with `mysql2`)
-- Bcrypt (for password hashing)
-- RESTful APIs
+- Local Storage (for session and event data)
 
 ---
 
 ## 📁 Project Structure
 
-```bash
+```
 hp-eventflow/
-├── eventflow-frontend/     # React Frontend
+├── eventflow-frontend/     # React Frontend Only
 │   └── src/
-│       ├── components/
-│       ├── pages/
-│       ├── styles/
-│       └── main.jsx
-├── eventflow-backend/      # Node.js + Express Backend
-│   ├── config/
-│   │   └── db.js
-│   ├── controllers/
-│   │   └── authController.js
-│   ├── routes/
-│   │   └── authRoutes.js
-│   ├── .env.example
-│   └── server.js
+│       ├── assets/         # Images and icons
+│       ├── components/     # Reusable components
+│       ├── pages/          # Page-level components
+│       ├── styles/         # CSS files
+│       └── main.jsx        # Entry point
 ├── .gitignore
-├── README.md
+├── README.md               # Project README (this file)
 └── package.json
+```
 
-🚀 Features
+---
 
-👨‍🏫 Teacher
-Sign up / Login
-View profile
-Create events
-Delete events
-View registered students
+## 🚀 Features
 
-👨‍🎓 Student
-Sign up / Login
-View profile
-View all events
-Register for events
-View registered events
+### 👨‍🏫 Teacher
+- Sign up / Login
+- View profile
+- Create new events
+- Delete or update existing events
+- View registered student section (placeholder)
 
-🔐 Session data is stored in localStorage for demo purposes.
+### 👨‍🎓 Student
+- Sign up / Login
+- View profile
+- Browse all events
+- Register for events
+- View registered events (based on localStorage)
 
-🧪 Demo Flow (for Interview or Showcase)
-Teacher Signup → Login → Profile → Admin Panel → Create/Delete Events
+### 💾 Local Storage
+All user data (sign-up, login), event creation, and registration are stored in the browser's localStorage for demo purposes.
 
-Student Signup → Login → Profile → Events → Register → Registered Events View
+---
 
-Use one browser or incognito mode to simulate both roles if needed.
+## 🧪 Demo Flow (For Interview / Showcase)
 
-⚙️ Setup Instructions
+> Use one browser and incognito mode to simulate **Teacher** and **Student** separately.
 
-1️⃣ Clone Repository
+### 🔸 Teacher Flow
+```
+1. Sign Up → 
+2. Login → 
+3. View Profile → 
+4. Create Events → 
+5. View Event Info
+```
+
+### 🔸 Student Flow
+```
+1. Sign Up → 
+2. Login → 
+3. View Profile → 
+4. Browse Events → 
+5. Register for Events → 
+6. View Registered Events
+```
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone Repository
+
+```bash
 git clone https://github.com/Itshari2005/EventFlow.git
-cd EventFlow
+cd EventFlow/eventflow-frontend
+```
 
-2️⃣ Backend Setup
+### 2️⃣ Install Dependencies
 
-cd eventflow-backend
-cp .env.example .env   # Fill DB credentials
+```bash
 npm install
-node server.js
+```
 
-3️⃣ Frontend Setup
+### 3️⃣ Start Development Server
 
-cd eventflow-frontend
-npm install
+```bash
 npm run dev
+```
 
-🌐 Hosting
-If hosted, access via:
-Frontend: http://localhost:5173
-Backend: http://localhost:5000
-Replace localhost with deployed URL if hosted online.
+### ✅ Open in Browser
+```
+http://localhost:5173
+```
 
-✅ .env File Example
-DB_HOST=localhost
-DB_USER=your_mysql_username
-DB_PASSWORD=your_mysql_password
-DB_NAME=your_database_name
-JWT_SECRET=your_jwt_secret
+---
 
+## 🌐 Deployment (Optional)
 
-👨‍💼 Author
-Hari Prashath
-Aspiring Full Stack Developer
-Focused on clean UI/UX and real-world functionality
-Open to learning and growing through team collaboration
+You can deploy this frontend-only version using:
+- **Vercel**
+- **Netlify**
+- **GitHub Pages (with Vite adapter)**
 
-📃 License
-This project is for educational/demo purposes only.
+---
+
+## 👨‍💼 Author
+
+**Hari Prashath**  
+Aspiring Full Stack Developer  
+Focused on clean UI/UX and real-world functionality  
+Open to learning and growing through team collaboration  
+
+[GitHub Profile](https://github.com/Itshari2005)
+
+---
+
+## 📃 License
+
+This project is intended for **educational and demo purposes** only. Not for production use.
+
